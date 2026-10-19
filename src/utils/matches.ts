@@ -49,9 +49,13 @@ function toTime(startsAt: string | null): number {
   return Number.isNaN(time) ? Infinity : time;
 }
 
-// По времени начала; матчи без даты — в конце.
-export function sortByStart(matches: Match[]): Match[] {
+// Идущие матчи — наверху, остальные по времени начала; матчи без даты — в конце.
+export function sortMatches(matches: Match[]): Match[] {
   return [...matches].sort((a, b) => {
+    const liveDiff = Number(b.status === 'live') - Number(a.status === 'live');
+    if (liveDiff !== 0) {
+      return liveDiff;
+    }
     const diff = toTime(a.startsAt) - toTime(b.startsAt);
     return Number.isNaN(diff) ? 0 : diff;
   });

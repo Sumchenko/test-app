@@ -11,7 +11,7 @@ export function MatchCard({ match }: Props) {
   const isLive = match.status === 'live';
 
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, isLive && styles.cardLive]}>
       <View style={styles.header}>
         <Text style={styles.date}>{formatStartsAt(match.startsAt)}</Text>
         <Text style={[styles.status, isLive && styles.statusLive]}>{getStatusLabel(match)}</Text>
@@ -43,6 +43,9 @@ const styles = StyleSheet.create({
     borderColor: '#e5e7eb',
     backgroundColor: '#fff',
     gap: 8,
+  },
+  cardLive: {
+    borderColor: '#ef3124',
   },
   header: {
     flexDirection: 'row',

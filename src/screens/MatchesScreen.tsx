@@ -4,7 +4,7 @@ import { FilterTabs } from '../components/FilterTabs';
 import { MatchCard } from '../components/MatchCard';
 import { UpdatedAgo } from '../components/UpdatedAgo';
 import { useMatches } from '../hooks/useMatches';
-import { filterMatches, sortByStart, type MatchFilter } from '../utils/matches';
+import { filterMatches, sortMatches, type MatchFilter } from '../utils/matches';
 
 // Экран «Матчи тура» — задание в README.md, часть 1.
 export function MatchesScreen() {
@@ -12,7 +12,7 @@ export function MatchesScreen() {
   const [filter, setFilter] = useState<MatchFilter>('all');
 
   const visibleMatches = useMemo(
-    () => (matches ? sortByStart(filterMatches(matches, filter)) : []),
+    () => (matches ? sortMatches(filterMatches(matches, filter)) : []),
     [matches, filter],
   );
 
