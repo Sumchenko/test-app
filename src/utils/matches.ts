@@ -26,7 +26,7 @@ function isKnownStatus(status: string): status is KnownStatus {
 
 export function getStatusLabel(match: Match): string {
   if (match.status === 'live' && match.minute != null) {
-    return `Идёт, ${match.minute}′`;
+    return `Идёт, ${match.minute}-я минута`;
   }
   // Незнакомый статус показываем как есть, чтобы не потерять информацию.
   return isKnownStatus(match.status) ? STATUS_LABELS[match.status] : match.status;
